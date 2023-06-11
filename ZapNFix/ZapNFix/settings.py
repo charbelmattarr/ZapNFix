@@ -105,7 +105,8 @@ DATABASES = {
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
                 'host': 'mongodb+srv://cmattar:cmattar@clustertesting.swsnkjz.mongodb.net/?retryWrites=true&w=majority'
-            }
+            },
+            'CONN_MAX_AGE': 299,
         }
 }
 
