@@ -28,7 +28,7 @@ from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 
-def index_page(request):
+def home(request):
     repairs = Repair.objects.all()
     print("tested")
     print(repairs)
@@ -36,6 +36,15 @@ def index_page(request):
     # Pass data to the template
     context = {'repairs': repairs}
     return render(request, 'index.html',context)
+
+def TechRepairApi(request):
+    repair = Repair.objects.all()
+    print("tested")
+    print(repair)
+
+    context = {}
+    context["dataset"] = repair
+    return render(request, 'TechRepair.html',context)
 
 def list_page(request):
     if request.method == "GET":
@@ -59,22 +68,31 @@ def repair_list_search(request):
         )
     context={}
     context["dataset"] = data
-    return render(request, 'list.html', context)
+    return render(request, 'TechRepair.html', context)
 def ClientRepairEdit(request, id):
     repair = get_object_or_404(Repair, id=id)
     print("Client Repair Edit ")
     if request.method == 'POST':
         print("Client Repair POST: "+ str(request.method))
         form = RepairForm(request.POST, instance=repair)
+        #print(str(form.cleaned_data['user_idTech']))
         #print("data: "+str(form.cleaned_data))
-        print("before formIsValid")
-        if form.is_valid():
-            print("Client Repair is Valid")
-            form.save()
-            # Redirect to a success page or render a response
-            return redirect('list')
-        else:
-            print("errorr: "+str(form.errors))
+        print("before formIsValid, form")
+        try:
+            if form.is_valid():
+                #obj=form.save(commit=False)
+                #obj.user_idTech = User.objects.Filter(username=F)
+                print("Client Repair is Valid")
+                form.save()
+                # Redirect to a success page or render a response
+                return redirect('list')
+        except Exception as e:
+                #print("errorr: "+str(form.errors))
+               print("errorr: "+str(form.errors))
+               print("errorr: " + str(e.args))
+               messages.success(request, "Your account has not created!")
+
+               return render(request, 'edit_repair.html')
     else:
         print("Client Repair GET")
         form = RepairForm(instance=repair)
@@ -89,12 +107,11 @@ def ClientRepairEdit(request, id):
 def ClientRepairDelete(request, id):
     repair = get_object_or_404(Repair, id=id)
     repair.delete()
-    return redirect('list')
+    return redirect('RepairTechList')
 
 
 def services_page(request):
     return render(request, 'services.html')
-
 
 
 def signup(request):

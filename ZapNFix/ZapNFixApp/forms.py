@@ -1,13 +1,18 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from .models import Repair, User
-
+# forms.py
+from django import forms
+from .models import *
+from django.contrib.auth.forms import UserCreationForm
 
 class RepairForm(forms.ModelForm):
-
+    # user_idClient = forms.ModelChoiceField(queryset=User.objects.all(), required=False)
+    # user_idTech = forms.ModelChoiceField(queryset=User.objects.all(), required=False)
     class Meta:
         model = Repair
         fields = ['desc', 'status', 'repairDate','isDelivery','pricing','notes', 'user_idTech', 'user_idClient']
+
 
     def clean(self):
         cleaned_data = super().clean()
@@ -42,11 +47,12 @@ class RepairForm(forms.ModelForm):
             print("before retrieve ")
             technician_username = self.cleaned_data['user_idTech']
             # Get the User instances based on the selected client_username and technician_username
-            client_user = User.objects.get(username=client_username)
-            technician_user = User.objects.get(username=technician_username)
+            client_user = User.objects.get_object_or_404(username=client_username)
+            technician_user = User.objects.get_object_or_404(username=technician_username)
 
             repair.user_idClient = client_user
             repair.user_idTech = technician_user
+
 
 
             if commit:
@@ -55,3 +61,29 @@ class RepairForm(forms.ModelForm):
             return repair
 
 
+
+
+
+class RegistrationForm(UserCreationForm):
+        class Meta:
+                model = User
+                fields = ['email', 'username', 'role', 'number', 'location', 'first_name', 'last_name']
+
+        def clean(self):
+                cleaned_data = super().clean()
+                email = cleaned_data.get('email')
+                username = cleaned_data.get('username')
+
+                if User.objects.filter(email=email).exists():
+                        self.add_error('email', 'This email is already taken. Please choose a different one.')
+
+                if User.objects.filter(username=username).exists():
+                        self.add_error('username', 'This username is already taken. Please choose a different one.')
+
+                return cleaned_data
+
+class RepairForm(forms.ModelForm):
+
+        class Meta:
+            model = Repair
+            fields = ['image']

@@ -22,16 +22,17 @@ from django.conf import settings
 
 
 urlpatterns = [
-    path('', views.index_page, name='home'),
+    path('',views.home,name="home"),
     path('services/', views.services_page, name='about_page'),
-    path('list/delete/<int:id>/', views.ClientRepairDelete, name='ClientRepairDelete'),
-    path('list/edit/<int:id>/', views.ClientRepairEdit, name='ClientRepairEdit'),
-    path('list/search/', views.repair_list_search, name='repair_list_search'),
+    path('TechRepair/delete/<int:id>/', views.ClientRepairDelete, name='ClientRepairDelete'),
+    path('TechRepair/edit/<int:id>/', views.ClientRepairEdit, name='ClientRepairEdit'),
+    path('TechRepair/search/', views.repair_list_search, name='repair_list_search'),
     path('admin/', admin.site.urls),
     path('list/', views.list_page, name='list'),
     path('signup', views.signup, name="signup"),
     path('signin', views.signin, name="signin"),
     path('signout', views.signout, name="signout"),
+    path('TechRepair/', views.TechRepairApi, name="RepairTechList"),
     path('Repair/', views.ClientRepairApi, name="RepairList"),
     path('Repair/<int:pk>/', views.ClientRepairApi),
     path('Repair/SavePhoto/',views.SavePhoto),
