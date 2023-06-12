@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'ZapNFix.urls'
+ROOT_URLCONF = 'ZapNFixApp.urls'
 
 '''TEMPLATES = [
     {
@@ -68,11 +68,15 @@ ROOT_URLCONF = 'ZapNFix.urls'
     },
 ]'''
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    # Other authentication backends if needed
+]
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -80,10 +84,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.template.context_processors.media',
             ],
         },
     },
 ]
+AUTH_USER_MODEL = 'ZapNFixApp.User'
 
 WSGI_APPLICATION = 'ZapNFix.wsgi.application'
 
@@ -101,7 +107,7 @@ WSGI_APPLICATION = 'ZapNFix.wsgi.application'
 DATABASES = {
         'default': {
             'ENGINE': 'djongo',
-            'NAME': 'dbtesting',
+            'NAME': 'RepairDb',
             'ENFORCE_SCHEMA': False,
             'CLIENT': {
                 'host': 'mongodb+srv://cmattar:cmattar@clustertesting.swsnkjz.mongodb.net/?retryWrites=true&w=majority'
@@ -151,3 +157,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
