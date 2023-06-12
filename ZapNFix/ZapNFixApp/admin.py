@@ -56,30 +56,28 @@ class UserAdmin(admin.ModelAdmin):
 
 
 class RepairForm(forms.ModelForm):
-    client_username = forms.ModelChoiceField(queryset=User.objects.all(), empty_label=None, to_field_name='username',
-                                             label='Client')
-    technician_username = forms.ModelChoiceField(queryset=User.objects.all(), empty_label=None, to_field_name='username',
-                                                 label='Technician')
 
+    user_idClient = forms.ModelChoiceField(queryset=User.objects.all(), required=False)
+    user_idTech = forms.ModelChoiceField(queryset=User.objects.all(), required=False)
     class Meta:
         model = Repair
         fields = ['desc', 'status', 'repairDate', 'user_idClient', 'user_idTech']
 
         search_fields = ['desc', 'status', 'repairDate', 'user_idClient', 'user_idTech']
-    def save(self, commit=True):
-        repair = super().save(commit=False)
-        client_username = self.cleaned_data['user_idClient']
-        technician_username = self.cleaned_data['user_idTech']
-        # Get the User instances based on the selected client_username and technician_username
-        client_user = User.objects.get(username=client_username)
-        technician_user = User.objects.get(username=technician_username)
-        # Assign the selected User instances to the user_idClient and user_idTech fields
-        repair.user_idClient = client_user
-        repair.user_idTech = technician_user
-        if commit:
-            repair.save()
-        return repair
-
+    # def save(self, commit=True):
+    #     repair = super().save(commit=False)
+    #     client_username = self.cleaned_data['user_idClient']
+    #     technician_username = self.cleaned_data['user_idTech']
+    #     # Get the User instances based on the selected client_username and technician_username
+    #     client_user = User.objects.get(username=client_username)
+    #     technician_user = User.objects.get(username=technician_username)
+    #     # Assign the selected User instances to the user_idClient and user_idTech fields
+    #     repair.user_idClient = client_user
+    #     repair.user_idTech = technician_user
+    #     if commit:
+    #         repair.save()
+    #     return repair
+    #
 
 class RepairAdmin(admin.ModelAdmin):
     form = RepairForm

@@ -29,4 +29,16 @@ urlpatterns = [
     path('list/search/', views.repair_list_search, name='repair_list_search'),
     path('admin/', admin.site.urls),
     path('list/', views.list_page, name='list'),
+    path('signup', views.signup, name="signup"),
+    path('signin', views.signin, name="signin"),
+    path('signout', views.signout, name="signout"),
+    path('Repair/', views.ClientRepairApi, name="RepairList"),
+    path('Repair/<int:pk>/', views.ClientRepairApi),
+    path('Repair/SavePhoto/',views.SavePhoto),
+    path('Repair/Delete/<int:id>', views.ClientRepairDelete),
+    path('Repair/Feedback/<int:id>', views.Feeback),
+    path('AddRequest/', views.addRequest, name="AddRequest"),
+    path('AddRequest/AddPicture/',views.addPicture,name="AddPicture"),
+    path('AddRequest/FilterBrand', views.FilterBrand, name="FilterBrand")
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

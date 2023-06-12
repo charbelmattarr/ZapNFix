@@ -92,7 +92,6 @@
 </head>
 <body>
 
-
     {% for message in messages %}
     <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
         <strong>Message:</strong> {{ message }}
@@ -102,8 +101,8 @@
     </div>
     {% endfor %}
 
- <div class="header_section">
-      <div class="header_main">
+ <div class="header_sectionRep">
+      <div class="header_mainRep">
          <div class="mobile_menu">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                <div class="logo_mobile"><a href="index.html">
@@ -122,8 +121,8 @@
                      </li>
                      {% if user.is_authenticated %}
 
-                     <li class="nav-item">
-                        <a class="nav-link" href="Repair/">your requests</a>
+                     <li class="nav-item"  disabled>
+                        <a class="nav-link" href="Repair/" >your requests</a>
                      </li>
 
                      <li class="nav-item">
@@ -159,8 +158,8 @@
                      </li>
                      {% if user.is_authenticated %}
 
-                     <li  >
-                        <a href="Repair/">your requests</a>
+                     <li >
+                        <a href="/Repair/">your requests</a>
                      </li>
 
                      <li  >
@@ -168,7 +167,7 @@
                      </li>
 
                      <li class="nav-item">
-                        <a  href="AddRequest/">Add a request</a>
+                        <a  href="/AddRequest/">Add a request</a>
                      </li>
                      {% else %}
 
@@ -189,15 +188,8 @@
             <div class="carousel-inner">
                <div class="carousel-item active">
                   <div class="container">
-                     <h1 class="banner_taital">All Kinds of Electronic Repairs</h1>
-
-                     <p class="banner_text">
-                       {% if user.is_authenticated %}
-
-                         Hello {{data.fname}}
-                       {% endif %}
-
-                         Do you have products that need fixing?</p>
+                     <h1 class="banner_taital">All Kind of Electronis</h1>
+                     <p class="banner_text">Do you have products that need fixing?</p>
                      <div class="read_bt"><a href="AddRequest/">Get A Quote</a></div>
                   </div>
                </div>
@@ -210,8 +202,8 @@
                </div>
                <div class="carousel-item">
                   <div class="container">
-                     <h1 class="banner_taital">Subscribe!</h1>
-                     <p class="banner_text">Zap N' Fix solves all your electronic needs, don't forget to register that way we'll be able to reach you!</p>
+                     <h1 class="banner_taital">Adventure</h1>
+                     <p class="banner_text">Crazy phone solves all your electronic needs, don't forget to register that way we'll be able to reach you!</p>
                      <div class="read_bt"><a href="AddRequest/">Get A Quote</a></div>
                   </div>
                </div>
@@ -221,149 +213,138 @@
       <!-- banner section end -->
    </div>
 
-   <div class="about_section layout_padding">
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-md-6">
-               <div class="about_taital_main">
-                  <h1 class="about_taital">About Us</h1>
-                  <p class="about_text">We are a self made group of people, That love fixing broken items.
-                  We have a passion for electronics and we are proud that we were able to come this far!</p>
-                  <div class="readmore_bt"><a href="#">Read More</a></div>
-               </div>
-            </div>
-            <div class="col-md-6 padding_right_0">
-               <div><img src="{% static 'myimages/flow chart.jpg' %}" class="about_img"></div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- about section end -->
-   <!-- blog section start -->
-   <div class="blog_section layout_padding">
-      <div class="container">
-         <h1 class="blog_taital">See Our Video</h1>
-         <p class="blog_text">many variations of some of the items' before and after pictures</p>
-         <div class="play_icon_main">
-            <div class="play_icon"><a href="#"><img src="{% static 'myimages/play-icon.png' %}"></a></div>
-         </div>
-      </div>
-   </div>
-   <!-- blog section end -->
-   <!-- client section start -->
-   <div class="client_section layout_padding">
-      <div class="container">
-         <h1 class="client_taital">Testimonial</h1>
-         <div class="client_section_2">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-               <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-               </ol>
-               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                     <div class="client_main">
-                        <div class="box_left">
-                           <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugia</p>
-                        </div>
-                        <div class="box_right">
-                           <div class="client_taital_left">
-                              <div class="client_img"><img src="{% static 'images/client-img.png' %}"></div>
-                              <div class="quick_icon"><img src="{% static 'images/quick-icon.png' %}"></div>
-                           </div>
-                           <div class="client_taital_right">
-                              <h4 class="client_name">Dame</h4>
-                              <p class="customer_text">Customer</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="client_main">
-                        <div class="box_left">
-                           <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugia</p>
-                        </div>
-                        <div class="box_right">
-                           <div class="client_taital_left">
-                              <div class="client_img"><img src="{% static 'images/client-img.png' %}"></div>
-                              <div class="quick_icon"><img src="{% static 'images/quick-icon.png' %}"></div>
-                           </div>
-                           <div class="client_taital_right">
-                              <h4 class="client_name">Dame</h4>
-                              <p class="customer_text">Customer</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="client_main">
-                        <div class="box_left">
-                           <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugia</p>
-                        </div>
-                        <div class="box_right">
-                           <div class="client_taital_left">
-                              <div class="client_img"><img src="{% static 'images/client-img.png' %}"></div>
-                              <div class="quick_icon"><img src="{% static 'images/quick-icon.png' %}"></div>
-                           </div>
-                           <div class="client_taital_right">
-                              <h4 class="client_name">Dame</h4>
-                              <p class="customer_text">Customer</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- client section start -->
-   <!-- choose section start -->
-   <div class="choose_section layout_padding">
-      <div class="container">
-         <h1 class="choose_taital">Why Choose Us</h1>
-         <p class="choose_text">There are many variations of passages of Lorem Ipsum available, but the majority have
-            suffered alteration in some form, by injected humour, or randomised words which don't look even slightly
-            believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
-            embarrassing hidden in the middle of text. All </p>
-         <div class="read_bt_1"><a href="#">Read More</a></div>
 
-      </div>
-   </div>
-   <!-- choose section end -->
-   <!-- footer section start -->
-   <div class="footer_section layout_padding">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="banner_taital">Your repairs</div>
+     {% for data in dataset %}
+<div class="container mt-5 mb-5">
+
+ <div >
+
+    <div class="d-flex justify-content-center row">
+
+          <div class="col-md-10">
+
+            <div class="row p-2 bg-white border rounded mt-2">
+                <div class="col-md-3 mt-1"><img class="img-fluid img-responsive rounded product-image" src="{{ MEDIA_URL }}{{data.image}}" alt="no picture"></div>
+                <div class="col-md-6 mt-1">
+                    <h5>{{ data.desc }}</h5>
+                    <div class="d-flex flex-row">
+                        {% if data.feedbackRate != null %}
+                         {% mkrange  data.feedbackRate  as fdrange %}
+                         {% for i in fdrange %}
+                             <div class="ratings mr-2"></div>
+                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8dc356" class="bi bi-star-fill" viewBox="0 0 16 16">
+                             <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                             </svg>
+                           {% endfor %}
+                        {% else %}
+                            <div class="mt-1 mb-1 spec-1"><p>Not rated yet!</p></div>
+                        {% endif %}
+
+                    </div>
+                    <div class="mt-1 mb-1 spec-1"><span>100% cotton</span><span class="dot"></span><span>Light weight</span><span class="dot"></span><span>Best finish<br></span></div>
+                    <div class="mt-1 mb-1 spec-1"><span>Unique design</span><span class="dot"></span><span>For men</span><span class="dot"></span><span>Casual<br></span></div>
+                    <p class="text-justify text-truncate para mb-0">{{data.status}}<br><br></p>
+                </div>
+                <div class="align-items-center align-content-center col-md-3 border-left mt-1">
+                    <div class="d-flex flex-row align-items-center">
+
+                        <h4 class="mr-1"></h4><span class="strike-text">
+                         {% if data.feedback != null %}
+                               ${{data.pricing}}
+                         {% else %}
+                               Not priced yet!
+                         {% endif %}
+                    </span>
+                    </div>
+                    {% if data.isDelivery == True %}
+                    <h6 class="text-success">Delivery</h6>
+                    {% else %}
+                    <h6 class="text-success">Pickup</h6>
+                    {% endif %}
+
+                 <div class="d-flex flex-column mt-4">
+
+                 {% if data.status == 'Repaired' and data.feedbackRate == null %}
+                      <a class="btn btn-primary btn-sm" href="Feedback/{{ data.id }}" type="button">Give us your Feedback</a>
+                 {% endif %}
+                 {% if data.status == 'Requested' %}
+                       <a class="btn btn-outline-primary btn-sm mt-2" href="Delete/{{ data.id }}" type="button">Delete</a></div>
+                 {% endif %}
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+
+     </div>
+     {% endfor %}
+  </div>
+
+<br><br>
+<br><br>
+<br><br>
+    <br><br>
+<div class="footer_section layout_padding">
       <div class="container">
          <div class="input_btn_main">
-            <input type="text" class="mail_text" placeholder="Enter your email" name="Enter your email">
-            <div class="subscribe_bt"><a href="#">Subscribe</a></div>
+           Thank you
          </div>
-         <div class="location_main">
-            <div class="call_text"><img src="{% static 'images/call-icon.png' %}"></div>
-            <div class="call_text"><a href="#">Call +01 1234567890</a></div>
-            <div class="call_text"><img src="{% static 'images/mail-icon.png' %}"></div>
-            <div class="call_text"><a href="#">demo@gmail.com</a></div>
-         </div>
-         <div class="social_icon">
-            <ul>
-               <li><a href="#"><img src="{% static 'images/fb-icon.png' %}"></a></li>
-               <li><a href="#"><img src="{% static 'images/twitter-icon.png' %}"></a></li>
-               <li><a href="#"><img src="{% static 'images/linkedin-icon.png' %}"></a></li>
-               <li><a href="#"><img src="{% static 'images/instagram-icon.png' %}"></a></li>
-            </ul>
-         </div>
+
+
       </div>
-   </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -456,7 +437,79 @@
    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
 
+  <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <!-- Popper js -->
+        <script src="{% static 'js/vendor/popper.min.js' %}"></script>
+        <!-- Bootstrap V4.1.3 Fremwork js -->
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <!-- Ajax Mail js -->
+        <script src="{% static 'js/ajax-mail.js' %}"></script>
+        <!-- Meanmenu js -->
+        <script src="{% static 'js/jquery.meanmenu.min.js' %}"></script>
+        <!-- Wow.min js -->
+        <script src="{% static 'js/wow.min.js' %}"></script>
+        <!-- Slick Carousel js -->
+        <script src="{% static 'js/slick.min.js' %}"></script>
+        <!-- Owl Carousel-2 js -->
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <!-- Magnific popup js -->
+        <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+        <!-- Isotope js -->
+        <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+        <!-- Imagesloaded js -->
+        <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+        <!-- Mixitup js -->
+        <script src="{% static 'js/jquery.mixitup.min.js' %}"></script>
+        <!-- Countdown -->
+        <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+        <!-- Counterup -->
+        <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+        <!-- Waypoints -->
+        <script src="{% static 'js/waypoints.min.js' %}"></script>
+        <!-- Barrating -->
+        <script src="{% static 'js/jquery.barrating.min.js' %}"></script>
+        <!-- Jquery-ui -->
+        <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+        <!-- Venobox -->
+        <script src="{% static 'js/venobox.min.js' %}"></script>
+        <!-- Nice Select js -->
+        <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+        <!-- ScrollUp js -->
+        <script src="{% static 'js/scrollUp.min.js' %}"></script>
+        <!-- Main/Activator js -->
+        <script src="{% static 'js/main.js%' }"></script>
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/parallax/parallax.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js"></script>
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+   <script src="{% static 'js/jquery.min.js' %}"></script>
+   <script src="{% static 'js/popper.min.js' %}"></script>
+   <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+   <script src="{% static 'js/jquery-3.0.0.min.js' %}"></script>
+   <script src="{% static 'js/plugin.js' %}"></script>
+   <!-- sidebar -->
+   <script src="{% static 'js/jquery.mCustomScrollbar.concat.min.js' %}"></script>
+   <script src="{% static 'js/custom.js' %}"></script>
+   <!-- javascript -->
+   <script src="{% static 'js/owl.carousel.js' %}"></script>
+   <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
+
+
   </body>
-</html>
-</body>
 </html>

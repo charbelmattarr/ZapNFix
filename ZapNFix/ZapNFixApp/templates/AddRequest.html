@@ -102,8 +102,8 @@
     </div>
     {% endfor %}
 
- <div class="header_section">
-      <div class="header_main">
+ <div class="header_sectionADD">
+      <div class="header_mainADD">
          <div class="mobile_menu">
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                <div class="logo_mobile"><a href="index.html">
@@ -123,14 +123,14 @@
                      {% if user.is_authenticated %}
 
                      <li class="nav-item">
-                        <a class="nav-link" href="Repair/">your requests</a>
+                        <a class="nav-link" href="/Repair/">your requests</a>
                      </li>
 
                      <li class="nav-item">
                         <a class="nav-link " href="/signout">Log Out</a>
                      </li>
                       <li class="nav-item">
-                        <a class="nav-link " href="AddRequest/">Add a request</a>
+                        <a class="nav-link " href="/AddRequest/">Add a request</a>
                      </li>
 
                      {% else %}
@@ -183,166 +183,100 @@
             </div>
          </div>
       </div>
-      <!-- banner section start -->
-      <div class="banner_section layout_padding">
-         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <div class="container">
-                     <h1 class="banner_taital">All Kinds of Electronic Repairs</h1>
 
-                     <p class="banner_text">
-                       {% if user.is_authenticated %}
+  <div class="formbold-form-wrapper">
 
-                         Hello {{data.fname}}
-                       {% endif %}
+   <div class="centered-div">
+    <form action="#" method="POST"  enctype="multipart/form-data" >
+      {% csrf_token %}
 
-                         Do you have products that need fixing?</p>
-                     <div class="read_bt"><a href="AddRequest/">Get A Quote</a></div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="banner_taital">Adventure</h1>
-                     <p class="banner_text">Did you drop your phone in water? Do you want to renew your laptop?</p>
-                     <div class="read_bt"><a href="AddRequest/">Get A Quote</a></div>
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <div class="container">
-                     <h1 class="banner_taital">Subscribe!</h1>
-                     <p class="banner_text">Zap N' Fix solves all your electronic needs, don't forget to register that way we'll be able to reach you!</p>
-                     <div class="read_bt"><a href="AddRequest/">Get A Quote</a></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-      <!-- banner section end -->
-   </div>
+     <input type="file" name="image"  id="image" required/>
+     <div class="formbold-input-group">
+        <label class="formbold-form-label">
+          What do you want to repair?
+        </label>
 
-   <div class="about_section layout_padding">
-      <div class="container-fluid">
-         <div class="row">
-            <div class="col-md-6">
-               <div class="about_taital_main">
-                  <h1 class="about_taital">About Us</h1>
-                  <p class="about_text">We are a self made group of people, That love fixing broken items.
-                  We have a passion for electronics and we are proud that we were able to come this far!</p>
-                  <div class="readmore_bt"><a href="#">Read More</a></div>
-               </div>
-            </div>
-            <div class="col-md-6 padding_right_0">
-               <div><img src="{% static 'myimages/flow chart.jpg' %}" class="about_img"></div>
-            </div>
-         </div>
+        <select class="formbold-form-select" name="type" id="typeSelect">
+          {% for type in Types %}
+          <option value="{{type.id}}">{{type.desc}}</option>
+           {% endfor %}
+        </select>
       </div>
-   </div>
-   <!-- about section end -->
-   <!-- blog section start -->
-   <div class="blog_section layout_padding">
-      <div class="container">
-         <h1 class="blog_taital">See Our Video</h1>
-         <p class="blog_text">many variations of some of the items' before and after pictures</p>
-         <div class="play_icon_main">
-            <div class="play_icon"><a href="#"><img src="{% static 'myimages/play-icon.png' %}"></a></div>
-         </div>
-      </div>
-   </div>
-   <!-- blog section end -->
-   <!-- client section start -->
-   <div class="client_section layout_padding">
-      <div class="container">
-         <h1 class="client_taital">Testimonial</h1>
-         <div class="client_section_2">
-            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-               <ol class="carousel-indicators">
-                  <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                  <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-               </ol>
-               <div class="carousel-inner">
-                  <div class="carousel-item active">
-                     <div class="client_main">
-                        <div class="box_left">
-                           <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugia</p>
-                        </div>
-                        <div class="box_right">
-                           <div class="client_taital_left">
-                              <div class="client_img"><img src="{% static 'images/client-img.png' %}"></div>
-                              <div class="quick_icon"><img src="{% static 'images/quick-icon.png' %}"></div>
-                           </div>
-                           <div class="client_taital_right">
-                              <h4 class="client_name">Dame</h4>
-                              <p class="customer_text">Customer</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="client_main">
-                        <div class="box_left">
-                           <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugia</p>
-                        </div>
-                        <div class="box_right">
-                           <div class="client_taital_left">
-                              <div class="client_img"><img src="{% static 'images/client-img.png' %}"></div>
-                              <div class="quick_icon"><img src="{% static 'images/quick-icon.png' %}"></div>
-                           </div>
-                           <div class="client_taital_right">
-                              <h4 class="client_name">Dame</h4>
-                              <p class="customer_text">Customer</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div class="carousel-item">
-                     <div class="client_main">
-                        <div class="box_left">
-                           <p class="lorem_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                              tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugia</p>
-                        </div>
-                        <div class="box_right">
-                           <div class="client_taital_left">
-                              <div class="client_img"><img src="{% static 'images/client-img.png' %}"></div>
-                              <div class="quick_icon"><img src="{% static 'images/quick-icon.png' %}"></div>
-                           </div>
-                           <div class="client_taital_right">
-                              <h4 class="client_name">Dame</h4>
-                              <p class="customer_text">Customer</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- client section start -->
-   <!-- choose section start -->
-   <div class="choose_section layout_padding">
-      <div class="container">
-         <h1 class="choose_taital">Why Choose Us</h1>
-         <p class="choose_text">There are many variations of passages of Lorem Ipsum available, but the majority have
-            suffered alteration in some form, by injected humour, or randomised words which don't look even slightly
-            believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything
-            embarrassing hidden in the middle of text. All </p>
-         <div class="read_bt_1"><a href="#">Read More</a></div>
 
+<div class="formbold-input-group">
+        <label class="formbold-form-label">
+           Which Brand?
+        </label>
+
+<div id="filteredBrands" class="formbold-input-group">
+  <select id="filteredBrandsList" class="formbold-form-select" name="product_id">
+    <!-- Display the filtered brands as options -->
+  </select>
+</div>
+
+
+
+         <div>
+        <label for="desc" class="formbold-form-label">
+          Describe your problem for us, Make sure to include in your answer the following:<br>
+            - When has the problem started shown.<br>
+            - Descriptions on all abnormal stuff happening.<br>
+            - What happened exactly: Was the device in contact with water?..<br>
+        </label>
+        <textarea
+          rows="6"
+          name="desc"
+          id="desc"
+          placeholder=" Describe your problem for us"
+          class="formbold-form-input"
+        ></textarea>
       </div>
-   </div>
-   <!-- choose section end -->
-   <!-- footer section start -->
-   <div class="footer_section layout_padding">
+
+     <div class="formbold-input-radio-wrapper">
+        <label for="delivery" class="formbold-form-label">
+          Would you prefer someone from our team to get your device from you?
+          Or you would bring it to our HQ?
+        </label>
+
+
+
+
+          <div class="formbold-radio-group">
+            <label class="formbold-radio-label">
+              <input
+                class="formbold-input-radio"
+                type="radio"
+                name="isDelivery"
+                id="delivery"
+                value="True"
+              />
+              Delivery (1st option)
+              <span class="formbold-radio-checkmark"></span>
+            </label>
+          </div>
+
+          <div class="formbold-radio-group">
+            <label class="formbold-radio-label">
+              <input
+                class="formbold-input-radio"
+                type="radio"
+                name="isDelivery"
+                id="pickup"
+                value="False"
+              />
+              Pickup (2nd option)
+              <span class="formbold-radio-checkmark"></span>
+            </label>
+          </div>
+
+        </div>
+     </div>
+      <button type="submit" class="btn btn-primary py-3 px-5">Add Request</button>
+     </form>
+       </div>
+  </div>
+</div>
+    <div class="footer_section layout_padding">
       <div class="container">
          <div class="input_btn_main">
             <input type="text" class="mail_text" placeholder="Enter your email" name="Enter your email">
@@ -365,22 +299,45 @@
       </div>
    </div>
 
+</div>
+     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+<script>
 
 
+$(document).ready(function() {
+  $('#typeSelect').on('change', function() {
+    var type_id = $(this).val();  // Get the selected type_id
 
+    // Send AJAX request to the view
+    $.ajax({
+      url: '/AddRequest/FilterBrand',  // Replace with the actual URL to your view
+      type: 'GET',
+      data: {
+        'type_id': type_id  // Pass the selected type_id as a parameter
+      },
+      success: function(response) {
+        // Handle the response
+        var filteredBrandsList = $('#filteredBrandsList');
+        filteredBrandsList.empty();  // Clear the existing options
 
+        // Iterate over the received data and append options to the select element
+        for (var i = 0; i < response.length; i++) {
+          var brand = response[i];
+          var brandId = brand.id;
+          var brandDesc = brand.desc;
 
-
-
-
-
-
-
-
-
-
-
-
+          // Create a new option element and set its value and text
+          var option = $('<option>').val(brandId).text(brandDesc);
+          filteredBrandsList.append(option);
+        }
+      },
+      error: function(xhr, status, error) {
+        console.log('AJAX request failed:', status, error);
+      }
+    });
+  });
+});
+</script>
 
   <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
         <!-- Popper js -->
@@ -456,7 +413,220 @@
    <script src="https:cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js"></script>
 
 
+
+
+
+
+
+  <script src="{% static 'js/vendor/%' }jquery-1.12.4.min.js"></script>
+        <!-- Popper js -->
+        <script src="{% static 'js/vendor/%' }popper.min.js"></script>
+        <!-- Bootstrap V4.1.3 Fremwork js -->
+        <script src="{% static 'js/bootstr%' }ap.min.js"></script>
+        <!-- Ajax Mail js -->
+        <script src="{% static 'js/ajax-ma%' }il.js"></script>
+        <!-- Meanmenu js -->
+        <script src="{% static 'js/jquery.%' }meanmenu.min.js"></script>
+        <!-- Wow.min js -->
+        <script src="{% static 'js/wow.min%' }.js"></script>
+        <!-- Slick Carousel js -->
+        <script src="{% static 'js/slick.m%' }in.js"></script>
+        <!-- Owl Carousel-2 js -->
+        <script src="{% static 'js/owl.car%' }ousel.min.js"></script>
+        <!-- Magnific popup js -->
+        <script src="{% static 'js/jquery.%' }magnific-popup.min.js"></script>
+        <!-- Isotope js -->
+        <script src="{% static 'js/isotope%' }.pkgd.min.js"></script>
+        <!-- Imagesloaded js -->
+        <script src="{% static 'js/imagesl%' }oaded.pkgd.min.js"></script>
+        <!-- Mixitup js -->
+        <script src="{% static 'js/jquery.%' }mixitup.min.js"></script>
+        <!-- Countdown -->
+        <script src="{% static 'js/jquery.%' }countdown.min.js"></script>
+        <!-- Counterup -->
+        <script src="{% static 'js/jquery.%' }counterup.min.js"></script>
+        <!-- Waypoints -->
+        <script src="{% static 'js/waypoin%' }ts.min.js"></script>
+        <!-- Barrating -->
+        <script src="{% static 'js/jquery.%' }barrating.min.js"></script>
+        <!-- Jquery-ui -->
+        <script src="{% static 'js/jquery-%' }ui.min.js"></script>
+        <!-- Venobox -->
+        <script src="{% static 'js/venobox%' }.min.js"></script>
+        <!-- Nice Select js -->
+        <script src="{% static 'js/jquery.%' }nice-select.min.js"></script>
+        <!-- ScrollUp js -->
+        <script src="{% static 'js/scrollU%' }p.min.js"></script>
+        <!-- Main/Activator js -->
+        <script src="{% static 'js/main.js%' }"></script>
+
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'lib/parallax/parallax.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'js/main.js"></script>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Inter', sans-serif;
+  }
+  .formbold-main-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px;
+  }
+
+  .formbold-form-wrapper {
+    margin: 0 auto;
+    max-width: 570px;
+    width: 100%;
+    background: white;
+    padding: 40px;
+  }
+
+  .formbold-form-img {
+    margin-bottom: 45px;
+  }
+
+  .formbold-input-group {
+    margin-bottom: 18px;
+  }
+
+  .formbold-form-select {
+    width: 100%;
+    padding: 12px 22px;
+    border-radius: 5px;
+    border: 1px solid #dde3ec;
+    background: #ffffff;
+    font-size: 16px;
+    color: #536387;
+    outline: none;
+    resize: none;
+  }
+
+  .formbold-input-radio-wrapper {
+    margin-bottom: 25px;
+  }
+  .formbold-radio-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+  .formbold-radio-label {
+    font-size: 14px;
+    line-height: 24px;
+    color: #07074d;
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  .formbold-input-radio {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  .formbold-radio-checkmark {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #ffffff;
+    border: 1px solid #dde3ec;
+    border-radius: 50%;
+  }
+  .formbold-radio-label
+    .formbold-input-radio:checked
+    ~ .formbold-radio-checkmark {
+    background-color: #6a64f1;
+  }
+  .formbold-radio-checkmark:after {
+    content: '';
+    position: absolute;
+    display: none;
+  }
+
+  .formbold-radio-label
+    .formbold-input-radio:checked
+    ~ .formbold-radio-checkmark:after {
+    display: block;
+  }
+
+  .formbold-radio-label .formbold-radio-checkmark:after {
+    top: 50%;
+    left: 50%;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #ffffff;
+    transform: translate(-50%, -50%);
+  }
+
+  .formbold-form-input {
+    width: 100%;
+    padding: 13px 22px;
+    border-radius: 5px;
+    border: 1px solid #dde3ec;
+    background: #ffffff;
+    font-weight: 500;
+    font-size: 16px;
+    color: #07074d;
+    outline: none;
+    resize: none;
+  }
+  .formbold-form-input::placeholder {
+    color: #536387;
+  }
+  .formbold-form-input:focus {
+    border-color: #6a64f1;
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+  .formbold-form-label {
+    color: #07074d;
+    font-size: 14px;
+    line-height: 24px;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .formbold-btn {
+    text-align: center;
+    width: 100%;
+    font-size: 16px;
+    border-radius: 5px;
+    padding: 14px 25px;
+    border: none;
+    font-weight: 500;
+    background-color: #6a64f1;
+    color: white;
+    cursor: pointer;
+    margin-top: 25px;
+  }
+  .formbold-btn:hover {
+    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.05);
+  }
+</style>
+
   </body>
-</html>
-</body>
+
 </html>
