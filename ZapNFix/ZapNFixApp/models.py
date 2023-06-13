@@ -57,7 +57,7 @@ class Type(models.Model):
 
 class Component(models.Model):
     desc = models.CharField(max_length=50)
-    image = models.ImageField(upload_to='media/')
+    image = models.ImageField(upload_to='media/', null = True)
 
 
     def __str__(self):
@@ -67,7 +67,8 @@ class Component(models.Model):
 class Problem(models.Model):
     desc = models.CharField(max_length=100)
     type_id = models.ForeignKey(Type, on_delete=models.CASCADE)
-    component_id = models.ForeignKey(Component, on_delete=models.CASCADE)
+    component_id = models.ForeignKey(Component, on_delete=models.CASCADE,null=True)
+    # component_id = models.ManyToManyField(Component)
     def __str__(self):
         return self.desc
 

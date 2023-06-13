@@ -95,6 +95,9 @@ def ClientRepairEdit(request, id):
     repair = get_object_or_404(Repair, id=id)
 
     if request.method == 'POST':
+        image_file = request.FILES.get('image')
+        if image_file:
+            repair.image = image_file
         desc = request.POST.get('desc')
         status = request.POST.get('status')
         repairDate = request.POST.get('repairDate')
@@ -123,12 +126,12 @@ def ClientRepairEdit(request, id):
         return render(request, 'edit_repair.html', context)
 
 
-
-
 def ClientRepairDelete(request, id):
     repair = get_object_or_404(Repair, id=id)
     repair.delete()
+    messages.success(request, "you have been successfully deleted the repair request!")
     return redirect('RepairTechList')
+
 
 
 def services_page(request):
@@ -188,12 +191,13 @@ def signout(request):
 
 @csrf_exempt
 def ClientRepairApi(request,id=0):
-
+    user = request.user
     if request.method == "GET":
       if request.user.is_authenticated:
-        repairs = Repair.objects.all()
+        repairs = Repair.objects.filter(user_idClient= user)
         repairs_serializer = RepairSerializer(repairs,many=True)
         context = {}
+
         context["dataset"] = repairs
         return render(request, "Repairs.html", context)
         #return JsonResponse(repairs_serializer.data,safe=False)
@@ -265,12 +269,7 @@ def Feeback(request,id):
         return render(request, "Feedback.html", context)
 
 
-def ClientRepairDelete(request,id):
-            repair = get_object_or_404(Repair,id=id)
-            repair.delete()
-            messages.success(request, "you have been successfully logged out!")
-            redirect_url = reverse('RepairList')
-            return redirect(redirect_url)
+
 
 def addRequest(request):
     if request.method == 'GET':
