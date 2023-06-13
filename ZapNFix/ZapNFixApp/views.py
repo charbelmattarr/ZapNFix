@@ -27,7 +27,8 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt, ensure_csrf_cookie
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Repair, User
 def home(request):
     repairs = Repair.objects.all()
     print("tested")
@@ -69,39 +70,59 @@ def repair_list_search(request):
     context={}
     context["dataset"] = data
     return render(request, 'TechRepair.html', context)
+from django.contrib import messages
+
+# def ClientRepairEdit(request, id):
+#     repair = get_object_or_404(Repair, id=id)
+#
+#     if request.method == 'POST':
+#         form = RepairForm(request.POST, instance=repair)
+#         if form.is_valid():
+#             form.save()
+#             messages.success(request, "Repair updated successfully.")
+#             return redirect('RepairTechList')
+#         else:
+#             messages.error(request, "Failed to update repair.")
+#     else:
+#         form = RepairForm(instance=repair)
+#
+#     context = {'form': form}
+#     return render(request, 'edit_repair.html', context)
+
+
+
 def ClientRepairEdit(request, id):
     repair = get_object_or_404(Repair, id=id)
-    print("Client Repair Edit ")
+
     if request.method == 'POST':
-        print("Client Repair POST: "+ str(request.method))
-        form = RepairForm(request.POST, instance=repair)
-        #print(str(form.cleaned_data['user_idTech']))
-        #print("data: "+str(form.cleaned_data))
-        print("before formIsValid, form")
-        try:
-            if form.is_valid():
-                #obj=form.save(commit=False)
-                #obj.user_idTech = User.objects.Filter(username=F)
-                print("Client Repair is Valid")
-                form.save()
-                # Redirect to a success page or render a response
-                return redirect('list')
-        except Exception as e:
-                #print("errorr: "+str(form.errors))
-               print("errorr: "+str(form.errors))
-               print("errorr: " + str(e.args))
-               messages.success(request, "Your account has not created!")
+        desc = request.POST.get('desc')
+        status = request.POST.get('status')
+        repairDate = request.POST.get('repairDate')
+        isDelivery = request.POST.get('isDelivery') == 'on'
+        pricing = request.POST.get('pricing')
+        notes = request.POST.get('notes')
+        user_idTech_id = request.POST.get('user_idTech')
 
-               return render(request, 'edit_repair.html')
+        # Update the repair object with the new values
+        repair.desc = desc
+        repair.status = status
+        repair.repairDate = repairDate
+        repair.isDelivery = isDelivery
+        repair.pricing = pricing
+        repair.notes = notes
+        repair.user_idTech_id = user_idTech_id
+
+        # Save the updated repair object
+        repair.save()
+
+        # Redirect to a success page or render a response
+        return redirect('RepairTechList')
     else:
-        print("Client Repair GET")
-        form = RepairForm(instance=repair)
+        technicians = User.objects.all()  # Retrieve all technicians
+        context = {'repair': repair, 'technicians': technicians}
+        return render(request, 'edit_repair.html', context)
 
-    print("Client Repair else")
-    context = {'form': form}
-    return render(request, 'edit_repair.html', context)
 
-# views.py
 
 
 def ClientRepairDelete(request, id):

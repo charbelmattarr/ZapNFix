@@ -22,6 +22,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELD = ['id','username','email']
 
 
+def __str__(self):
+    return str(self.id)
 class Repair(models.Model):
 
     desc = models.TextField()
